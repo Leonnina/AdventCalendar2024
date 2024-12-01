@@ -1,0 +1,22 @@
+first_list=[]
+second_list=[]
+with open("inputday1.txt") as f:
+    for line in f.readlines():
+        first_list.append(int(line[0:5])) #creating two lists from the input txt file
+        second_list.append(int(line[8:13]))
+
+first_list.sort()
+second_list.sort()
+total_difference=0
+for a in range(len(first_list)):
+    total_difference += abs(first_list[a]-second_list[a]) # summing the difference between sorted items of the lists
+
+print(total_difference) #answer to the first task
+
+new_first=[]
+for number in first_list:
+    indices = [i for i, x in enumerate(second_list) if x == number] # get the list of all the indices of all the repetitions in the second list for each number from the first list
+    new_first.append(number*len(indices))
+
+similarity_score=sum(new_first)
+print(similarity_score) #answer to the second task
