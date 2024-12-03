@@ -1,0 +1,30 @@
+safe_reports_count=0
+with open("inputday2.txt") as f:
+    for report in f.readlines():
+        current_report=[int(i) for i in report.split()]
+        print(current_report)
+        count=0
+        if (current_report[1] - current_report[0]) >= 1:
+            for num in range(len(current_report) - 1):
+                if (current_report[num + 1] - current_report[num]) > 3:
+                    count=0
+                    break
+                if (current_report[num + 1] - current_report[num]) < 1:
+                    count = 0
+                    break
+                count +=1
+            if count !=0:
+                safe_reports_count+=1
+        if (current_report[1] - current_report[0]) <= -1:
+            for num in range(len(current_report) - 1):
+                if (current_report[num + 1] - current_report[num]) < -3:
+                    count = 0
+                    break
+                if (current_report[num + 1] - current_report[num]) > -1:
+                    count = 0
+                    break
+                count +=1
+            if count !=0:
+                safe_reports_count+=1
+
+print(safe_reports_count)
